@@ -1,0 +1,45 @@
+name: "HelixStudios"
+sceneByURL:
+  - action: script
+    url:
+      - helixstudios.com/
+    script:
+      - python
+      - HelixStudios.py
+      - sceneByURL
+#sceneByURL:
+#  - action: scrapeXPath
+#    url:
+#      - helixstudios.com/video/
+#      - helixstudios.com/
+#    scraper: sceneScraper
+
+xPathScrapers:
+  sceneScraper:
+    scene:
+      Title: //h1[@class="description"]/text()
+      Date:
+        selector: //div[@class="release-date"][1]/text()
+        postProcess:
+          - parseDate: Jan 2, 2006
+      Tags:
+        Name: //div[@class="tags"]/a/text()
+      Performers:
+        Name: //div[@class="performer-name"]/text()
+      URL: //link[@rel="canonical"][1]/@href
+      Image:
+        selector: //h5[@class="modal-title"]/a/@href
+        postProcess:
+          - replace:
+              - regex: /(\d+)/.*
+                with: https://imgs1cdn.adultempire.com/bn/950/$1-custom-default.jpg
+      Director: //div[@class="director"]/text()
+      Code:
+        selector: //div[@id="dv_frames"]/div/@id
+        postProcess:
+          - replace:
+              - regex: scene
+                with:
+      Studio:
+        Name: //div[@class="studio"]/span[2]/text()
+# Last Updated Jan 11, 2026
