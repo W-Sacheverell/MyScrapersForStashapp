@@ -1,0 +1,19 @@
+name: Falcon Studios Store
+sceneByURL:
+  - action: script
+    url:
+      - store.falconstudios.com/
+    script:
+      - python
+      - FalconStore_Scene.py
+      - sceneByURL
+
+groupByURL:
+  - action: script
+    url:
+      - store.falconstudios.com/
+    script:
+      - python
+      - FalconStore_Movie.py
+      - groupByURL
+# Last Updated Jan 11, 2026
