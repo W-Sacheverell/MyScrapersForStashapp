@@ -1,0 +1,18 @@
+name: Coomer
+sceneByURL:
+  - action: script
+    url:
+      # - coomer.su/
+      - coomer.st/
+    script:
+      - python
+      - Coomer.py
+      - sceneByURL
+sceneByFragment:
+  action: script
+  script:
+    - python
+    - Coomer.py
+    - sceneByFragment
+
+# Last Updated Jan 11, 2026
