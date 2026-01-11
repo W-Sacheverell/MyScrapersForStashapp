@@ -1,0 +1,11 @@
+name: Blake Mason
+sceneByURL:
+  - action: script
+    url:
+      - blakemason.com/videos/
+    script:
+      - python
+      - BlakeMason.py
+      - sceneByURL
+
+# Last Updated Jan 12, 2026
