@@ -1,0 +1,11 @@
+name: Latin Boyz
+sceneByURL:
+  - action: script
+    url:
+      - latinboyz.com/
+    script:
+      - python
+      - LatinBoyz.py
+      - sceneByURL
+
+# Last Updated Jan 15, 2026
