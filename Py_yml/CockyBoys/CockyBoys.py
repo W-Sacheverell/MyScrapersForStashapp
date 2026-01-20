@@ -89,6 +89,12 @@ def scrape_scene(url):
     if og_site:
         studio_name = og_site["content"]
 
+	# img
+    img = ""
+    og_img = soup.find("meta", property="og:image")
+    if og_img:
+        img = og_img["content"]
+
     return {
         "Title": title,
         "Date": date_str,
@@ -96,6 +102,7 @@ def scrape_scene(url):
         "Studio": {"Name": studio_name},
         "Performers": performers,
         "Tags": tags,
+        "Image": img,
         "URL": url
     }
 
