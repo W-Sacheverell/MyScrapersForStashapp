@@ -1,0 +1,47 @@
+name: Fenrir
+
+sceneByURL:
+  - action: scrapeXPath
+    url:
+      - sketchysex.com/trailer.php?id=
+      - facedownassup.com/trailer.php?id=
+      - fratx.com/trailer.php?id=
+    scraper: fenrirentertainment
+
+xPathScrapers:
+  fenrirentertainment:
+    scene:
+      Title: //div[@class="name"]
+      Details:
+        selector: //div[@class="VideoDescription"]
+        postProcess:
+          - replace:
+            - regex: .*?\s*-\s*(.*)
+              with: $1
+      Date:
+        selector: //div[@class="VideoDescription"]
+        postProcess:
+          - replace:
+            - regex: ^(.*?)\s*-\s*.*
+              with: $1
+          - parseDate: January 2th, 2006
+      Image:
+        selector: //video/@poster
+        postProcess:
+          - replace:
+            - regex: -[1-4]x\.
+              with: -full.
+      Tags:
+        Name: //span[@class="tag-text"]/text()
+      Performers: 
+        Name: //ul[@class="ModelNames"]//text()
+      Studio:
+        Name:
+          selector: //meta[@name="author"]/@content
+          postProcess: 
+          - replace:
+            - regex: .com
+              with: ""
+        URL: //meta[@property="og:url"]/@content
+
+# Last Updated Jan 21, 2026
