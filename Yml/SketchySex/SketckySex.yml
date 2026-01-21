@@ -14,18 +14,15 @@ xPathScrapers:
         selector: //div[@class="VideoDescription"]
         postProcess:
           - replace:
-            - regex: \w+\s+\d+(?:st|nd|rd|th)?,\s+\d+\s*-\s*(.*)
+            - regex: .*?\s*-\s*(.*)
               with: $1
       Date:
-        selector: //div[@class="date"]
+        selector: //div[@class="VideoDescription"]
         postProcess:
           - replace:
-            - regex: "ADDED:"
-              with: ""
-          - replace:
-            - regex: (\w+)\s+(\d+),\s+(\d+)
-              with: $1 $2, $3
-          - parseDate: Jan 2, 2006
+            - regex: ^(.*?)\s*-\s*.*
+              with: $1
+          - parseDate: January 2th, 2006
       Image:
         selector: //video/@poster
         postProcess:
@@ -42,4 +39,4 @@ xPathScrapers:
         URL:
           fixed: https://www.sketchysex.com
 
-# Last Updated Jan 10, 2026
+# Last Updated Jan 21, 2026
