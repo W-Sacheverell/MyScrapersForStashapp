@@ -1,0 +1,31 @@
+name: "BaitBuddies"
+sceneByURL:
+  - action: scrapeXPath
+    url:
+      - baitbuddies.com/?page=preview
+    scraper: sceneScraper
+
+xPathScrapers:
+  sceneScraper:
+    common:
+      $bait: //div[@class="header_txt"]
+    scene:
+      Title: 
+        selector: $bait/a/text()
+        concat: " & "
+      Details:
+        selector: //div[@class="TabbedPanelsContentWrap"]/p/text()
+        concat: "\n\n"
+      Tags:
+        Name: //div[@id="tags"]//a/text()
+      Performers:
+        Name: $bait/a/text()
+        URLs: $bait/a/@href
+      Image: //img[@class="main-vid"]/@src
+      Studio:
+        Name:
+          fixed: Bait Buddies
+
+driver:
+  useCDP: true
+# Last Updated Jan 22, 2026
