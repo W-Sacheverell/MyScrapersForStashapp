@@ -1,0 +1,39 @@
+name: RawAlphaMales
+sceneByURL:
+  - action: scrapeXPath
+    url:
+      - rawalphamales.com/video/
+    scraper: sceneScraper
+
+xPathScrapers:
+  sceneScraper:
+    scene:
+      Title: //div[@class="video-container highlighted"]/h1/text()
+      URL: //meta[@property="og:url"]/@content
+      Code: //meta[@property="article:tag"]/@content
+      Date:
+        selector: //div[@class="video-container highlighted"]/h1/small/text()
+        postProcess:
+          - replace:
+              - regex: st,|nd,|rd,|th,
+                with: ","
+          - parseDate: Jan 2, 2006
+      Details:
+        selector: //div[@class="video-container highlighted"]//p
+      Image:
+        selector: //div[@class="row"]//script[@type="text/javascript"]/text()
+        postProcess:
+          - replace:
+              - regex: \t
+                with: ""
+          - replace:
+              - regex: (?s)^.*?image:\s*'(.*?)',.*$
+                with: $1
+          - replace:
+              - regex: ^/
+                with: "https://www.rawalphamales.com/"
+      Studio:
+        Name:
+          fixed: Raw Alpha Males
+
+# Last Updated Jan 22, 2026
