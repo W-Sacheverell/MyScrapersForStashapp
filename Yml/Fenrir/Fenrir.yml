@@ -24,7 +24,10 @@ xPathScrapers:
           - replace:
             - regex: ^(.*?)\s*-\s*.*
               with: $1
-          - parseDate: January 2th, 2006
+          - replace:
+              - regex: st,|nd,|rd,|th,
+                with: ","
+          - parseDate: January 2, 2006
       Image:
         selector: //video/@poster
         postProcess:
@@ -44,4 +47,4 @@ xPathScrapers:
               with: ""
         URL: //meta[@property="og:url"]/@content
 
-# Last Updated Jan 21, 2026
+# Last Updated Jan 22, 2026
